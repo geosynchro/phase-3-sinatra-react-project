@@ -8,6 +8,16 @@ class ApplicationController < Sinatra::Base
     # (include: [:exercise_routines])
   end
 
+  get "/routines/:id" do
+    routine = Routine.find(params[:id])
+    routine.to_json(include: [exercise_routines: {include: :exercise}])
+  end
+
+  post "/routines" do
+    routine = Routine.create({name:params[:name], days_of_week: params[:days_of_week]})
+    routine.to_json
+  end
+
   get "/exercises" do
     exercises = Exercise.all
     exercises.to_json(include: :category)
