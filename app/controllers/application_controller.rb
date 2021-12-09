@@ -4,7 +4,13 @@ class ApplicationController < Sinatra::Base
   # Add your routes here
   get "/routines" do
     routines = Routine.all
-    routines.to_json(include: [:exercises])
+    routines.to_json 
+    # (include: [:exercise_routines])
+  end
+
+  get "/exercises" do
+    exercises = Exercise.all
+    exercises.to_json(include: :category)
   end
 
   get "/exerciseroutines" do

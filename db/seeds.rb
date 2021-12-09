@@ -70,7 +70,7 @@ Exercise.create(name: "Cable Crossover", category_id: chest.id)
 days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 names = ["Leg day", "Chest Day", "Cardio Day", "Rest Day", "Strech Day"]
 
-chest = Routine.create(name: "Chest Day", days_of_week: "Monday")
+chest_day = Routine.create(name: "Chest Day", days_of_week: "Monday")
 
 10.times {
     Routine.create(
@@ -81,6 +81,11 @@ chest = Routine.create(name: "Chest Day", days_of_week: "Monday")
 
 
 #ExcerciseRoutine seed data
+
+ExcerciseRoutine.create(
+    routine: chest_day,
+    exercise: Exercise.
+)
 
 Routine.all.each {|routine|
     num = rand(3..8)
