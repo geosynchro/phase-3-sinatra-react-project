@@ -40,6 +40,22 @@ class ApplicationController < Sinatra::Base
     {message:"exercise deleted"}.to_json
   end
 
+  post "/exerciseroutines" do
+    if params[:routine_id] == nil
+      "No routine ID".to_json
+    else
+      exercise_routines = ExerciseRoutine.create(
+      routine_id:params[:routine_id], 
+      exercise_id:params[:exercise_id], 
+      duration: params[:duration], 
+      reps: params[:reps], 
+      weight: params[:weight])
+      exercise_routines.to_json(include: :exercise)
+    end
+  end
+
+
+
 
   # get "/exercise/chest" do
   #   chest = Exercise.all.where(:name == "") 
