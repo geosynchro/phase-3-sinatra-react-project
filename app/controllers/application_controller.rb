@@ -18,6 +18,12 @@ class ApplicationController < Sinatra::Base
     routine.to_json
   end
 
+  delete "/routines/:id" do
+    routine = Routine.find(params[:id])
+    routine.destroy
+    {message:"routine deleted"}.to_json
+  end
+
   get "/exercises" do
     exercises = Exercise.all
     exercises.to_json(include: :category)
@@ -26,6 +32,12 @@ class ApplicationController < Sinatra::Base
   get "/exerciseroutines" do
     routines = ExerciseRoutine.all
     routines.to_json(include: [:routine, :exercise])
+  end
+
+  delete "/exerciseroutines/:id" do
+    routine = ExerciseRoutine.find(params[:id])
+    routine.destroy
+    {message:"exercise deleted"}.to_json
   end
 
 
